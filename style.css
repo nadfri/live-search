@@ -20,15 +20,15 @@ body {
 }
 
 .search {
-    border: solid 2px orange;
-    border-radius: 4px;
     width: 95%;
     margin: auto;
+    margin-bottom: 30px;
+    border: solid 2px orange;
+    border-radius: 4px;
     background-color: #464037;
     color: orange;
     font-size: 1.5rem;
     text-transform: capitalize;
-    margin-bottom: 30px;
     outline: none;
 }
 
@@ -37,11 +37,11 @@ body {
 }
 
 fieldset {
-    font-size: 1.5rem;
     width: 95%;
+    min-height: 50vh;
+    padding: 5px;
     border: solid 2px orange;
     border-radius: 4px;
-    min-height: 50vh;
 }
 
 legend {
@@ -55,15 +55,23 @@ legend {
     margin: 0;
 }
 
-.ul img {
-    height: 1.5rem;
-    float: right;
+.spanImg {
+    display: inline-block;
+    width: 55px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.spanImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .ul li {
-    width: 50%;
     margin: auto;
-    padding: 1px 5px;
+    padding: 5px;
+    font-size: 1.3rem;
 }
 
 .ul li:hover {

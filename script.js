@@ -4,9 +4,9 @@ fetch("https://restcountries.eu/rest/v2/all")
     .then(dataRaw => dataRaw.json())
     .then(dataJson => {
         /*Search Function*/
-        console.log(dataJson)
+        console.log(dataJson);
         search.oninput = () => {
-            ul.innerHTML = "";
+            ul.innerHTML = ""; //clear List
             let key = search.value.toLowerCase();
 
             if (key != "") {
@@ -17,16 +17,20 @@ fetch("https://restcountries.eu/rest/v2/all")
                             truth = false;
                             break;
                         }
-                    return truth
+                    return truth //if true, add in filtered tab
                 });
 
 
                 for (let country of filtered) {
                     const li = document.createElement("li");
+
+                    const spanImg = document.createElement("span");
+                    spanImg.className = "spanImg";
                     const img = document.createElement("img");
                     img.src = country.flag;
                     img.alt = country.name;
                     img.title = country.name;
+                    spanImg.appendChild(img);
 
                     const span = document.createElement("span");
                     const spanGreen = document.createElement("span");
@@ -37,9 +41,9 @@ fetch("https://restcountries.eu/rest/v2/all")
                         else span.textContent += country.name[i];
                     }
 
+                    li.appendChild(spanImg);
                     li.appendChild(spanGreen);
                     li.appendChild(span);
-                    li.appendChild(img);
                     ul.appendChild(li);
                 }
             } else ul.innerHTML = "";
