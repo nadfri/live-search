@@ -1,2 +1,5 @@
 # live-search
-Search word in Live with AutoCompletion 
+Exemple of function to search a country in a database
+With live autocompletion
+# Test Here
+https://nadfri.github.io/live-search/ 
