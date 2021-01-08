@@ -82,3 +82,10 @@ legend {
 .green {
     color: #4fff4f;
 }
+
+ul .no-result {
+    text-align: center;
+    color: red;
+    font-size: 2rem;
+    font-style: italic;
+}
