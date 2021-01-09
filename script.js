@@ -1,52 +1,72 @@
-search.focus();
 /*Get All Countries by API with fetch*/
 fetch("https://restcountries.eu/rest/v2/all")
     .then(dataRaw => dataRaw.json())
     .then(dataJson => {
-        /*Search Function*/
-        console.log(dataJson);
-        search.oninput = () => {
+        //console.log(dataJson);
+        /*Display all Country*/
+        btnAll.onclick   = () => {
             ul.innerHTML = ""; //clear List
-            let key = search.value.toLowerCase();
+            display(dataJson);
+        };
 
-            if (key) {
-                const filtered = dataJson.filter(country => {
-                    let truth = true;
-                    for (let i = 0; i < key.length; i++)
-                        if (country.name[i].toLowerCase() != key[i] || key.length > country.name.length) {
-                            truth = false;
-                            break;
-                        }
-                    return truth //if true, add in filtered tab
-                });
+        /*Search*/
+        search.oninput   = () => {
+            ul.innerHTML = ""; //clear List
+            let keyWord  = search.value.toLowerCase();
 
-                if (filtered.length) {
-                    for (let country of filtered) {
-                        const li = document.createElement("li");
+            if (keyWord) //if keyWord not null
+            {
+                const filtered = filterArray(dataJson, keyWord);
 
-                        const spanImg = document.createElement("span");
-                        spanImg.className = "spanImg";
-                        const img = document.createElement("img");
-                        img.src = country.flag;
-                        img.alt = country.name;
-                        img.title = country.name;
-                        spanImg.appendChild(img);
+                if (filtered.length) display(filtered, keyWord);
+                else ul.innerHTML = "<li class='no-result'>No results found...</li>";
+            }
+        };
+    });
 
-                        const span = document.createElement("span");
-                        const spanGreen = document.createElement("span");
-                        spanGreen.className = "green";
 
-                        for (let i = 0; i < country.name.length; i++) {
-                            if (key[i] == country.name[i].toLowerCase()) spanGreen.textContent += country.name[i];
-                            else span.textContent += country.name[i];
-                        }
-
-                        li.appendChild(spanImg);
-                        li.appendChild(spanGreen);
-                        li.appendChild(span);
-                        ul.appendChild(li);
-                    }
-                } else ul.innerHTML = "<li class='no-result'>No results found...</li>";
-            } else ul.innerHTML = "";
+/*Function filter array*/
+function filterArray(array, key) 
+{
+    const filtered = array.filter(country => 
+    {
+        for (let i = 0; i < key.length; i++)
+        {
+            if (country.name[i].toLowerCase() != key[i] || key.length > country.name.length) 
+                return false;
         }
-    })
+
+        return true; //if true, add in filtered tab
+    });
+
+    return filtered; //return the filtered array
+}
+
+/*Function display Array*/
+function display(array, key) {
+
+    if (key == null) key = [];
+    for (let country of array) {
+        const li = document.createElement("li");
+        const spanContainer = document.createElement("span");
+        const img = document.createElement("img");
+        img.src = country.flag;
+        img.alt = country.name;
+        img.title = country.name;
+
+        const span = document.createElement("span");
+        const spanGreen = document.createElement("span");
+        spanGreen.className = "green";
+
+        for (let i = 0; i < country.name.length; i++) {
+            if (key[i] == country.name[i].toLowerCase()) spanGreen.textContent += country.name[i];
+            else span.textContent += country.name[i];
+        }
+
+        spanContainer.appendChild(spanGreen);
+        spanContainer.appendChild(span);
+        li.appendChild(img);
+        li.appendChild(spanContainer);
+        ul.appendChild(li);
+    }
+}
