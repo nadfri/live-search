@@ -31,14 +31,13 @@ function filterArray(array, key)
 {
     const filtered = array.filter(country => 
     {
-        let truth = true;
         for (let i = 0; i < key.length; i++)
         {
             if (country.name[i].toLowerCase() != key[i] || key.length > country.name.length) 
                 return false; //if false test next country
         }
 
-        return truth; //if true, add country in filtered tab
+        return true; //if true, add country in filtered tab
     });
 
     return filtered; //return the filtered array

@@ -49,10 +49,11 @@ body {
     font-family: 'Racing Sans One', cursive;
     font-size: 1.4rem;
     transition: all 0.5s;
+    color: white;
 }
 
 .btnAll:hover {
-    color: #ffcb6c;
+    color: greenyellow;
 }
 
 
