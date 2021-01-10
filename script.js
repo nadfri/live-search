@@ -30,23 +30,24 @@ function filterArray(array, key)
 {
     const filtered = array.filter(country => 
     {
+        let truth = true;
         for (let i = 0; i < key.length; i++)
         {
             if (country.name[i].toLowerCase() != key[i] || key.length > country.name.length) 
-                return false;
+                return false; //if false test next country
         }
 
-        return true; //if true, add in filtered tab
+        return truth; //if true, add country in filtered tab
     });
 
     return filtered; //return the filtered array
 }
 
 /*Function display Array*/
-function display(array, key) {
-
-    if (key == null) key = [];
-    for (let country of array) {
+function display(array, key) 
+{
+    for (let country of array) 
+    {
         const li = document.createElement("li");
         const spanContainer = document.createElement("span");
         const img = document.createElement("img");
@@ -58,8 +59,10 @@ function display(array, key) {
         const spanGreen = document.createElement("span");
         spanGreen.className = "green";
 
-        for (let i = 0; i < country.name.length; i++) {
-            if (key[i] == country.name[i].toLowerCase()) spanGreen.textContent += country.name[i];
+        for (let i = 0; i < country.name.length; i++) 
+        {
+            if (key[i] == country.name[i].toLowerCase()) 
+                 spanGreen.textContent += country.name[i];
             else span.textContent += country.name[i];
         }
 
