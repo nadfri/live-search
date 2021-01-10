@@ -29,18 +29,17 @@ fetch("https://restcountries.eu/rest/v2/all")
 /*Function filter array*/
 function filterArray(array, key) 
 {
-    const filtered = array.filter(country => 
+    let filtered = array;
+
+    for(let i=0; i<key.length; i++) //recursive filter
     {
-        for (let i = 0; i < key.length; i++)
-        {
-            if (country.name[i].toLowerCase() != key[i] || key.length > country.name.length) 
-                return false; //if false test next country
-        }
+        filtered = filtered.filter(country => { 
+            if (country.name[i].toLowerCase() == key[i]) 
+                return true; //if country, add it to filtered
+        });
+    }
 
-        return true; //if true, add country in filtered tab
-    });
-
-    return filtered; //return the filtered array
+    return filtered;
 }
 
 /*Function display Array*/
