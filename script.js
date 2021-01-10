@@ -3,11 +3,6 @@ fetch("https://restcountries.eu/rest/v2/all")
     .then(dataRaw => dataRaw.json())
     .then(dataJson => {
         //console.log(dataJson);
-        /*Display all Country*/
-        btnAll.onclick   = () => {
-            ul.innerHTML = ""; //clear List
-            display(dataJson);
-        };
 
         /*Search*/
         search.oninput   = () => {
@@ -21,6 +16,12 @@ fetch("https://restcountries.eu/rest/v2/all")
                 if (filtered.length) display(filtered, keyWord);
                 else ul.innerHTML = "<li class='no-result'>No results found...</li>";
             }
+        };
+
+        /*Display all Country*/
+        btnAll.onclick   = () => {
+            ul.innerHTML = ""; //clear List
+            display(dataJson);
         };
     });
 
@@ -46,6 +47,8 @@ function filterArray(array, key)
 /*Function display Array*/
 function display(array, key) 
 {
+    if(key == null) key = ""; //need it to use display All country
+
     for (let country of array) 
     {
         const li = document.createElement("li");
