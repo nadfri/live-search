@@ -31,13 +31,9 @@ function filterArray(array, key)
 {
     let filtered = array;
 
-    for(let i=0; i<key.length; i++) //recursive filter
-    {
-        filtered = filtered.filter(country => { 
-            if (country.name[i].toLowerCase() == key[i]) 
-                return true; //if country, add it to filtered
-        });
-    }
+    for(let i=0; i<key.length; i++) 
+        filtered = filtered.filter(country => country.name[i].toLowerCase() == key[i]);
+    
 
     return filtered;
 }
