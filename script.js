@@ -1,5 +1,5 @@
 /*Get All Countries by API with fetch*/
-fetch('https://restcountries.eu/rest/v2/all')
+fetch('https://restcountries.com/v2/all')
 	.then((dataRaw) => dataRaw.json())
 	.then((dataJson) => {
 		//console.log(dataJson);
@@ -61,6 +61,14 @@ function display(array, key) {
 
 		spanContainer.appendChild(spanGreen);
 		spanContainer.appendChild(span);
+
+		if(country.capital)
+		{
+			const spanCapital = document.createElement('span');
+			spanCapital.textContent = ", " + country.capital || "";
+			spanContainer.appendChild(spanCapital);
+		}
+		
 		li.appendChild(img);
 		li.appendChild(spanContainer);
 		ul.appendChild(li);
